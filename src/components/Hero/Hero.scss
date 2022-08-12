@@ -1,0 +1,29 @@
+.hero{
+    margin-bottom: 140px;
+
+    &-wrapper{
+        height: 650px;
+        background: url('../../../public/hero-bg.jpg') center center / cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+    }
+    
+
+    &-inner-wrapper{
+        width: 380px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &-title{
+        margin-bottom: 20px;
+    }
+
+    &-text{
+        margin-bottom: 32px;
+    }
+}

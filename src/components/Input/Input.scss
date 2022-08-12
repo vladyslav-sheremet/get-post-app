@@ -1,0 +1,35 @@
+@import '../../colors.scss';
+
+.input{
+    padding: 14px 16px;
+    border: 1px solid #D0CFCF;
+    border-radius: 4px;
+    background-color: $bg-light-gray;
+    outline: none;
+    width: 100%;
+
+    &-wrapper{
+        position: relative;
+    }
+
+    &::placeholder{
+        color: $placeholder;
+    }
+
+    &[type='radio']{
+        margin-top: 0;
+        accent-color: $bg-blue;
+    }
+
+    &-error{
+        border-color: $error;
+    }
+}
+
+.error{
+    color: $error;
+    font-size: 12px;
+    position: absolute;
+    bottom: -17px;
+    left: 16px;
+}

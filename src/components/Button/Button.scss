@@ -1,0 +1,32 @@
+@import '../../colors';
+
+.button, .link{
+    width: 100px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 80px;
+    background-color: $bg-yellow;
+    color: #000000DE;
+    text-decoration: none;
+
+    &:hover{
+        background-color: $bg-yellow-hover;
+    }
+
+    &:disabled{
+        background-color: $bg-button-disabled;
+        color: #FFFFFFDE;
+    }
+
+    &.center{
+        margin: 0 auto;
+    }
+
+    &:disabled{
+        background-color: $bg-button-disabled;
+    }
+}
