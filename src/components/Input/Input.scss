@@ -24,6 +24,12 @@
     &-error{
         border-color: $error;
     }
+
+    &-radio-wrapper{
+        display: flex;
+        gap: 12px;
+        margin-top: 7px;
+    }
 }
 
 .error{

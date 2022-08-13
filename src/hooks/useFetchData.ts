@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios"
 import { useEffect, useState } from "react"
 import { IUser } from "../models"
 
-export const useFetchData = (): [IUser[], string, boolean, (user: {success: boolean, user_id: number, message: string}) =>void, () => void] => {
+export const useFetchData = () => {
     const [data, setData] = useState<IUser[]>([])
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
@@ -23,7 +23,6 @@ export const useFetchData = (): [IUser[], string, boolean, (user: {success: bool
             setError(error.message)
         }
     }
-    console.log('data' ,data)
 
     const addUser = (user: {success: boolean, user_id: number, message: string}) => {
         // console.log('data', data)
@@ -43,5 +42,5 @@ export const useFetchData = (): [IUser[], string, boolean, (user: {success: bool
         fetchData()
     }, [page])
 
-    return [data, error, loading, addUser, changePage]
+    return {data, error, loading, addUser, changePage}
 }

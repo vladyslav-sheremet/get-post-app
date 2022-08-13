@@ -6,9 +6,7 @@ import './Users.scss'
 import { useEffect } from 'react'
 
 export const Users = () => {
-    const [data, error, loading, , changePage] = useFetchData()
-
-    console.log('data from users', data)
+    const {data, error, loading, changePage} = useFetchData()
     const clickHandler = () => {
         changePage()
     }

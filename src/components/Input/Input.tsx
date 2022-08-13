@@ -1,29 +1,55 @@
-import React from 'react'
+import React, { AriaAttributes, DOMAttributes } from 'react'
+import { DeepPartial, FieldError, FieldValues, Mode, Resolver, UseFormRegisterReturn } from 'react-hook-form'
 import './Input.scss'
 
-interface InputProps {
-    placeholder?: string
-    type: string
-    inputHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void
-    name?: string
-    value?: string
-    id?: string
-    error?: string
+interface InputPropsTest {
+    // placeholder?: string
+    // type: string
+    // inputHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    // name?: string
+    // value?: string
+    // id?: string
+    error?: boolean
+    errorMessage?: string
+    text?: string
+    fileName?: string
+    fileHandler?: (event: any) => void
 }
 
-export const Input = ({ placeholder, type, inputHandler, name, value, id, error }: InputProps) => {
-    return (
-        <div className="input-wrapper">
-            <input
-                className={`input${error ? ' input-error' : ''}`}
-                type={type}
-                placeholder={placeholder}
-                onChange={inputHandler}
-                name={name}
-                value={value}
-                id={id}
-            />
-            <p className='error'>{error}</p>
-        </div>
-    )
-}
+type InputProps = React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+> & InputPropsTest;
+
+
+
+export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => (
+    <>
+        {props.type === 'file' ? (
+            <label className='file' htmlFor="file" onChange={props.fileHandler}>
+                <input
+                    id='file'
+                    style={{ display: 'none' }}
+                    ref={ref}
+                    {...props}
+                />
+                <div className='file-upload'>Upload</div>
+                <div className={`file-text${props.fileName && ' active'}`}>{props.fileName ? props.fileName : 'Upload your photo'}</div>
+            </label>
+        ) : (
+            <div className={props.text && ' input-radio-wrapper'}>
+                <div className='input-wrapper'>
+                    <input
+                        className={`input${props.error ? ' input-error' : ''}`}
+                        ref={ref}
+                        {...props}
+                    />
+                    {props.error && <p className='error'>{props.errorMessage}</p>}
+                </div>
+                {props.text && <p>{props.text}</p>}
+            </div>
+        )}
+    </>
+
+
+))
