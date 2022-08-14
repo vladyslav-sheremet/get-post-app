@@ -1,12 +1,11 @@
 /* eslint-disable no-control-regex */
 import { ChangeEvent, FC, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import * as yup from 'yup';
 
 import { IUser } from "../../models";
 import { FormSectionProps } from "./interfaces";
 
-import Button from "../Button/Button";
+import Button from "components/Button";
 import Input from "../Input/Input";
 
 import "./FormSection.scss";
@@ -31,7 +30,6 @@ const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
 
     const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
-        console.log(files)
 
         if (!files) return;
 
@@ -46,11 +44,6 @@ const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
             clearErrors("photo")
         }
     };
-
-    console.log("Errors", errors);
-    console.log("isValid", isValid);
-
-
 
     const submitHandler: SubmitHandler<IUser> = async data => {
         /**

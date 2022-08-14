@@ -12,29 +12,55 @@ const Button: FC<ButtonProps> = ({
     typeSubmit,
     center,
     disable,
-}) => (
-    <>
-        {href ? (
+}) => {
+
+    if (href) {
+        return (
             <AnchorLink className="link" href={href}>
                 {text}
             </AnchorLink>
-        ) : showMore ? (
+        )
+    }
+
+    if (showMore) {
+        return (
             <button
                 className={`button${center ? " center" : ""}`}
                 onClick={showMore}
             >
                 {text}
             </button>
-        ) : (
-            <button
-                type={typeSubmit ? "submit" : "button"}
-                className={`button${center ? " center" : ""}`}
-                disabled={disable}
-            >
-                {text}
-            </button>
-        )}
-    </>
-);
+        )
+    }
+    // {href ? (
+    //     <AnchorLink className="link" href={href}>
+    //         {text}
+    //     </AnchorLink>
+    // ) : showMore ? (
+    //     <button
+    //         className={`button${center ? " center" : ""}`}
+    //         onClick={showMore}
+    //     >
+    //         {text}
+    //     </button>
+    // ) : (
+    //     <button
+    //         type={typeSubmit ? "submit" : "button"}
+    //         className={`button${center ? " center" : ""}`}
+    //         disabled={disable}
+    //     >
+    //         {text}
+    //     </button>
+    // )}
+    return (
+        <button
+            type={typeSubmit ? "submit" : "button"}
+            className={`button${center ? " center" : ""}`}
+            disabled={disable}
+        >
+            {text}
+        </button>
+    )
+};
 
 export default Button;
