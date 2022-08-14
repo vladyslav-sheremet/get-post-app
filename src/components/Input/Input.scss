@@ -1,31 +1,31 @@
-@import '../../colors.scss';
+@import "../../colors.scss";
 
-.input{
+.input {
     padding: 14px 16px;
-    border: 1px solid #D0CFCF;
+    border: 1px solid #d0cfcf;
     border-radius: 4px;
     background-color: $bg-light-gray;
     outline: none;
     width: 100%;
 
-    &-wrapper{
+    &-wrapper {
         position: relative;
     }
 
-    &::placeholder{
+    &::placeholder {
         color: $placeholder;
     }
 
-    &[type='radio']{
+    &[type="radio"] {
         margin-top: 0;
         accent-color: $bg-blue;
     }
 
-    &-error{
+    &-error {
         border-color: $error;
     }
 
-    &-radio-wrapper{
+    &-radio-wrapper {
         display: flex;
         gap: 12px;
         margin-top: 7px;
@@ -35,9 +35,9 @@
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
     transition: background-color 600000s 0s, color 600000s 0s;
-  }
+}
 
-.error{
+.error {
     color: $error;
     font-size: 12px;
     position: absolute;
