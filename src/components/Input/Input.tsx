@@ -19,7 +19,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     <input
                         type={type}
                         id="file"
-                        style={{ display: "none" }}
+                        style={{ opacity: 0 }}
                         ref={ref}
                         {...rest}
                     />

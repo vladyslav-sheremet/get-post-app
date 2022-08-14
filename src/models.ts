@@ -1,10 +1,10 @@
 export interface IUser {
-    readonly email: string;
-    readonly id: number;
-    readonly name: string;
-    readonly phone: string;
-    readonly photo: string;
-    readonly position: string;
-    readonly position_id: string;
-    readonly registration_timestamp: number;
+    email: string;
+    id?: number;
+    name: string;
+    phone: string;
+    photo: string;
+    position?: string;
+    position_id: string;
+    registration_timestamp?: number;
 }

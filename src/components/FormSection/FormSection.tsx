@@ -1,6 +1,7 @@
 /* eslint-disable no-control-regex */
 import { ChangeEvent, FC, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import * as yup from 'yup';
 
 import { IUser } from "../../models";
 import { FormSectionProps } from "./interfaces";
@@ -12,7 +13,7 @@ import "./FormSection.scss";
 
 const formData = new FormData();
 
-const fileTypeList = ["image/jpeg", "image/jpg"];
+const maxFileSize = 1500000 // 5Mb
 
 const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
     const [fileName, setFileName] = useState<string>("");
@@ -24,26 +25,32 @@ const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
         reset,
         setError,
         clearErrors,
-    } = useForm<IUser>({ mode: "onBlur" });
+    } = useForm<IUser>({ 
+        mode: "onBlur"
+     });
 
     const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
+        console.log(files)
 
         if (!files) return;
 
         setFileName(files[0].name);
 
-        if (fileTypeList.includes(files[0].type)) {
-            clearErrors("photo");
-        } else {
+        if (files[0].size > maxFileSize) {
             setError("photo", {
                 type: "custom",
-                message: "File type must be JPG or JPEG only!",
+                message: "the file is too large",
             });
+        } else {
+            clearErrors("photo")
         }
     };
 
     console.log("Errors", errors);
+    console.log("isValid", isValid);
+
+
 
     const submitHandler: SubmitHandler<IUser> = async data => {
         /**
@@ -58,6 +65,7 @@ const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
         /**
          * Send data to the API
          */
+
         await sendUser(formData);
 
         /**
@@ -152,17 +160,18 @@ const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
 
                     <Input
                         type="file"
+                        accept="image/jpeg"
                         fileName={fileName}
                         error={errors.photo}
                         errorMessage={errors.photo?.message}
                         fileHandler={fileHandler}
                         {...register("photo", {
                             required: true,
-                        })}
+                          })}
                     />
 
                     <Button
-                        disable={!isValid}
+                        disable={!isValid || Object.keys(errors).length > 0}
                         center
                         typeSubmit
                         text="Sign up"
