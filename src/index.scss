@@ -1,33 +1,37 @@
-@import './colors.scss';
+@import "./colors.scss";
 
-*, *::after, *::before{
-  box-sizing: border-box;
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 400;
-  color: $main-color;
-  background-color: $bg-light-gray;
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    color: $main-color;
+    background-color: $bg-light-gray;
 }
 
-h1, h2, p{
-  margin: 0;
+h1,
+h2,
+p {
+    margin: 0;
 }
 
-.container{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-.title{
-  font-size: 40px;
-  font-weight: 400;
+.title {
+    font-size: 40px;
+    font-weight: 400;
 }
 
-.text{
-  font-size: 16px;
-  line-height: 26px;
+.text {
+    font-size: 16px;
+    line-height: 26px;
 }

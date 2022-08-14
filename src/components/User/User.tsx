@@ -1,19 +1,23 @@
-import { IUser } from '../../models'
+import { FC } from "react";
 
-import './User.scss'
+import { UserProps } from "./interfaces";
 
-interface UserProps {
-    user: IUser
-}
+import "./User.scss";
 
-export const User = ({user}: UserProps) => (
-        <div className='user'>
-            <img className='user-img' src={user.photo} alt={user.name} />
-            <p>{user.name}</p>
-            <div className="user-text-wrapper">
-                <p>{user.position}</p>
-                <p>{user.email}</p>
-                <p>{user.phone}</p>
-            </div>
+const User: FC<UserProps> = ({
+    user: { photo, name, position, email, phone },
+}) => (
+    <div className="user">
+        <img className="user-img" src={photo} alt={name} />
+
+        <p>{name}</p>
+
+        <div className="user-text-wrapper">
+            <p>{position}</p>
+            <p>{email}</p>
+            <p>{phone}</p>
         </div>
-)
+    </div>
+);
+
+export default User;

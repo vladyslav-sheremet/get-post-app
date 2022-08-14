@@ -1,51 +1,50 @@
-import React from 'react'
+import React from "react";
 
-import './Input.scss'
+import { InputProps } from "./interfaces";
 
-interface InputPropsCustom {
-    error?: boolean
-    errorMessage?: string
-    text?: string
-    fileName?: string
-    fileHandler?: (event: any) => void
-}
+import "./Input.scss";
 
-type InputProps = React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-> & InputPropsCustom;
-
-
-
-export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const {error, errorMessage, fileName, fileHandler, ...rest} = props
-    return (
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+    (
+        { type, text, error, errorMessage, fileName, fileHandler, ...rest },
+        ref
+    ) => (
         <>
-            {props.type === 'file' ? (
-                <label className='file' htmlFor="file" onChange={props.fileHandler}>
+            {type === "file" ? (
+                <label
+                    className={`file${error ? " input-error" : ""}`}
+                    htmlFor="file"
+                    onChange={fileHandler}
+                >
                     <input
-                        id='file'
-                        style={{ display: 'none' }}
+                        type={type}
+                        id="file"
+                        style={{ display: "none" }}
                         ref={ref}
                         {...rest}
                     />
-                    <div className='file-upload'>Upload</div>
-                    <div className={`file-text${props.fileName && ' active'}`}>{props.fileName ? props.fileName : 'Upload your photo'}</div>
+                    <div className="file-upload">Upload</div>
+                    {error && <p className="error">{errorMessage}</p>}
+                    <div className={`file-text${fileName && " active"}`}>
+                        {fileName ? fileName : "Upload your photo"}
+                    </div>
                 </label>
             ) : (
-                <div className={props.text && ' input-radio-wrapper'}>
-                    <div className='input-wrapper'>
+                <div className={text && "input-radio-wrapper"}>
+                    <div className="input-wrapper">
                         <input
-                            className={`input${props.error ? ' input-error' : ''}`}
+                            type={type}
+                            className={`input${error ? " input-error" : ""}`}
                             ref={ref}
                             {...rest}
                         />
-                        {props.error && <p className='error'>{props.errorMessage}</p>}
+                        {error && <p className="error">{errorMessage}</p>}
                     </div>
-                    {props.text && <p>{props.text}</p>}
+                    {text && <p>{text}</p>}
                 </div>
             )}
         </>
     )
+);
 
-})
+export default Input;
