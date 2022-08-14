@@ -12,13 +12,11 @@ interface ButtonProps {
     disable?: boolean
 }
 
-export const Button = ({ text, href, showMore, typeSubmit, center, disable }: ButtonProps) => {
-    return (
+export const Button = ({ text, href, showMore, typeSubmit, center, disable }: ButtonProps) => (
         <>
 
             {href ? (<AnchorLink className='link' href={href}>{text}</AnchorLink>)
                 : showMore ? <button className={`button${center ? ' center' : ''}`} onClick={showMore}>{text}</button>
                 : <button type={typeSubmit ? 'submit' : 'button'} className={`button${center ? ' center' : ''}`} disabled={disable}>{text}</button>}
         </>
-    )
-}
+)

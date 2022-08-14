@@ -2,8 +2,7 @@ import { Button } from '../Button/Button'
 
 import './Hero.scss'
 
-export const Hero = () => {
-    return (
+export const Hero = () => (
         <section className='hero'>
             <div className='container'>
                 <div className='hero-wrapper'>
@@ -15,5 +14,4 @@ export const Hero = () => {
                 </div>
             </div>
         </section>
-    )
-}
+)

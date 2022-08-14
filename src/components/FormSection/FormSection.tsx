@@ -1,18 +1,20 @@
+import { useState } from 'react'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
 import { IUser } from '../../models'
 import { Button } from '../Button/Button'
 import { Input } from '../Input/Input'
-import './FormSection.scss'
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { useFetchData } from '../../hooks/useFetchData'
+
+import './FormSection.scss'
 
 const formData = new FormData()
 
 export const FormSection = () => {
     const [fileName, setFileName] = useState('')
 
-    const { addUser } = useFetchData()
+    const {addUser} = useFetchData()
 
     const {
         register,
@@ -42,6 +44,7 @@ export const FormSection = () => {
         const response = await axios.post('https://frontend-test-assignment-api.abz.agency/api/v1/users', formData, { headers: { 'Token': token } })
         addUser(response.data)
     }
+
     return (
         <section className='section-form' id='form'>
             <div className="container">

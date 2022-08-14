@@ -3,10 +3,9 @@ import { User } from '../User/User'
 import { useFetchData } from '../../hooks/useFetchData'
 
 import './Users.scss'
-import { useEffect } from 'react'
 
 export const Users = () => {
-    const {data, error, loading, changePage} = useFetchData()
+    const {data, changePage} = useFetchData()
     const clickHandler = () => {
         changePage()
     }

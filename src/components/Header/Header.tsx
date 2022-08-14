@@ -2,8 +2,7 @@ import { Button } from '../Button/Button'
 
 import './Header.scss'
 
-export const Header = () => {
-    return (
+export const Header = () => (
         <header className='header'>
             <div className='container'>
                 <div className="header-wrapper">
@@ -15,5 +14,4 @@ export const Header = () => {
                 </div>
             </div>
         </header>
-    )
-}
+)

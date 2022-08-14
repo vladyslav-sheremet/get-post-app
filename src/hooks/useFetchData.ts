@@ -1,21 +1,20 @@
 import axios, { AxiosError } from "axios"
 import { useEffect, useState } from "react"
+
 import { IUser } from "../models"
 
 export const useFetchData = () => {
     const [data, setData] = useState<IUser[]>([])
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [page, setPage] = useState(1)
+    const [error, setError] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false)
+    const [page, setPage] = useState<number>(1)
 
     const fetchData = async () => {
         try {
             setError('')
             setLoading(true)
             const response = await axios.get(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`)
-
             setData(response.data.users)
-            
             setLoading(false)
         } catch (e: unknown) {
             const error = e as AxiosError
@@ -24,10 +23,8 @@ export const useFetchData = () => {
         }
     }
 
-    const addUser = (user: {success: boolean, user_id: number, message: string}) => {
-        // console.log('data', data)
-        // setData(prev => [...prev, user])
-        if(user.success) {
+    const addUser = (res: any) => {
+        if(res.success) {
             fetchData()
         } 
     }
@@ -36,11 +33,9 @@ export const useFetchData = () => {
         setPage(prev => ++prev)
     }
 
-    
-    
     useEffect(() => {
         fetchData()
     }, [page])
 
-    return {data, error, loading, addUser, changePage}
+    return {data, setData, error, loading, addUser, changePage}
 }
