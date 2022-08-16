@@ -3,7 +3,7 @@ import { FC } from "react";
 import { UsersProps } from "./interfaces";
 
 import Button from "../Button/Button";
-import User from "../User/User";
+import User from "../User";
 
 import "./Users.scss";
 

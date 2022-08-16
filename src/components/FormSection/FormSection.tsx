@@ -5,14 +5,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { IUser } from "../../models";
 import { FormSectionProps } from "./interfaces";
 
-import Button from "components/Button";
-import Input from "../Input/Input";
+import Button from "../Button";
+import Input from "../Input";
 
 import "./FormSection.scss";
 
 const formData = new FormData();
 
-const maxFileSize = 1500000 // 5Mb
+const maxFileSize = 5000000 // 5Mb
 
 const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
     const [fileName, setFileName] = useState<string>("");
@@ -65,6 +65,11 @@ const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
          * Reset form
          */
         reset();
+        formData.delete("name")
+        formData.delete("email")
+        formData.delete("phone")
+        formData.delete("position_id")
+        formData.delete("photo")
         setFileName("");
     };
 

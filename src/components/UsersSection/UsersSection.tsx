@@ -3,12 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 
 import { IUser } from "../../models";
 
-import FormSection from "../FormSection/FormSection";
-import Users from "../Users/Users";
+import FormSection from "../FormSection";
+import Users from "../Users";
 
-export interface SomeInterface {
-    change: boolean;
-}
 const UsersSection = () => {
     /**
      * Handle page change
@@ -28,14 +25,23 @@ const UsersSection = () => {
             );
             setData(response.data.users);
         } catch (e: unknown) {
-            const error = e as AxiosError;
-            throw error;
+            throw e as AxiosError;
         }
     }, []);
 
     useEffect(() => {
         getUsers(page);
     }, [page, getUsers]);
+
+    // const getUsers = useCallback(async (selectedPage: number) => {
+    //     return await axios.get(
+    //         `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${selectedPage}&count=6`
+    //     );
+    // }, []);
+
+    // useEffect(() => {
+    //     getUsers(page).then(res => setData(res.data.users));
+    // }, [page, getUsers]);
 
     const sendUser = async (formData: FormData) => {
         try {
@@ -55,8 +61,7 @@ const UsersSection = () => {
                     }
                 });
         } catch (e: unknown) {
-            const error = e as AxiosError;
-            throw error;
+            throw e as AxiosError;
         }
     };
 
