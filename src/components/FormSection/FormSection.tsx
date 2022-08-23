@@ -25,7 +25,7 @@ const FormSection: FC<FormSectionProps> = ({ sendUser }) => {
         setError,
         clearErrors,
     } = useForm<IUser>({ 
-        mode: "onBlur"
+        mode: "onTouched"
      });
 
     const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {

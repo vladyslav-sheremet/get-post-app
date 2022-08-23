@@ -14,14 +14,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 <label
                     className={`file${error ? " input-error" : ""}`}
                     htmlFor="file"
-                    onChange={fileHandler}
                 >
                     <input
                         type={type}
                         id="file"
-                        style={{ display: 'none' }}
+                        style={{ opacity: 0, width: 0, height: 0 }}
                         ref={ref}
                         {...rest}
+                        onChange={fileHandler}
                     />
                     <div className="file-upload">Upload</div>
                     {error && <p className="error">{errorMessage}</p>}
